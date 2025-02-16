@@ -33,7 +33,7 @@
 ## 🤝 参与贡献
 欢迎通过以下方式参与改进：
 1. 提交BUG报告：[问题追踪](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
-2. 发起功能请求：[功能建议](https://github.com/ChingyuanCheng/bilibili-no-new-tab/discussions)
+2. 发起功能请求：[功能建议](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
 3. 直接贡献代码：🚀 [Fork仓库](https://github.com/ChingyuanCheng/bilibili-no-new-tab/fork)
 
 ## 📜 许可证
