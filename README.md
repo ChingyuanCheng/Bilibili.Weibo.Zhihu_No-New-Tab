@@ -40,7 +40,7 @@ This project has documentation in both English and Chinese.
 ## 🤝 Contributing
 Welcome to contribute in the following ways:
 1. Submit bug reports: [Issue Tracker](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
-2. Request new features: [Feature Suggestions](https://github.com/ChingyuanCheng/bilibili-no-new-tab/discussions)
+2. Request new features: [Feature Suggestions](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
 3. Contribute code directly: 🚀 [Fork Repository](https://github.com/ChingyuanCheng/bilibili-no-new-tab/fork)
 
 ## 📜 License
