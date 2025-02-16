@@ -2,46 +2,116 @@
 // @name         Bilibili 禁止新标签页打开链接
 // @name:en      Bilibili No New Tab
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      3.0
 // @description  让哔哩哔哩所有链接在当前标签页打开
 // @description:en Force all Bilibili links to open in the current tab instead of a new tab
 // @author       ChingyuanCheng
 // @license      MIT
-// @match        *://www.bilibili.com/*
-// @match        *://t.bilibili.com/*
-// @match        *://space.bilibili.com/*
+// @match        *://*.bilibili.com/*
 // @grant        none
-// @run-at       document-end
-// @downloadURL https://update.greasyfork.org/scripts/527007/Bilibili%20%E7%A6%81%E6%AD%A2%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5.user.js
-// @updateURL https://update.greasyfork.org/scripts/527007/Bilibili%20%E7%A6%81%E6%AD%A2%E6%96%B0%E6%A0%87%E7%AD%BE%E9%A1%B5%E6%89%93%E5%BC%80%E9%93%BE%E6%8E%A5.meta.js
+// @run-at       document-start
 // ==/UserScript==
 
 (function() {
     'use strict';
 
-    /**
-     * 移除所有 target="_blank" 以确保链接在当前标签页打开。
-     * Remove all target="_blank" to ensure links open in the current tab.
-     */
-    function modifyLinks() {
-        document.querySelectorAll('a[target="_blank"]').forEach(link => {
-            link.removeAttribute('target');
-            link.rel = "noopener noreferrer"; // 额外的安全性 / Extra security
-        });
+    // 判断是否为B站域名
+    function isBilibiliDomain(url) {
+        try {
+            const u = new URL(url, location.href);
+            return u.hostname.endsWith('.bilibili.com') ||
+                   u.hostname === 'bilibili.com';
+        } catch {
+            return false;
+        }
     }
 
-    // 初始修改 / Initial modification
-    modifyLinks();
+    // 判断是否为赛事页面
+    function isMatchPage() {
+        return location.pathname.startsWith('/match/');
+    }
 
-    // 监听动态加载的内容（适用于 AJAX 加载的页面）
-    // Observe dynamically loaded content (for AJAX-loaded pages)
-    const observer = new MutationObserver(mutations => {
-        mutations.forEach(mutation => {
-            if (mutation.type === 'childList') {
-                modifyLinks();
+    /**
+     * 核心拦截：处理所有可能的跳转方式
+     */
+    function interceptAllNavigations() {
+        // 拦截 window.open
+        const originalOpen = window.open;
+        window.open = function(url, target, features) {
+            if (typeof url === 'string' && isBilibiliDomain(url)) {
+                console.log(`[全局拦截] window.open: ${url}`);
+                location.href = url;
+                return null;
             }
-        });
-    });
+            return originalOpen(...arguments);
+        };
 
-    observer.observe(document.body, { childList: true, subtree: true });
+        // 拦截所有链接点击（包括动态生成和事件委托）
+        document.addEventListener('click', function(event) {
+            let target = event.target;
+            while (target && target.tagName !== 'A') {
+                target = target.parentElement;
+            }
+
+            if (target?.tagName === 'A') {
+                const href = target.getAttribute('href');
+                if (href && isBilibiliDomain(href)) {
+                    // 特殊处理赛事页面主站按钮
+                    if (isMatchPage() && href === 'https://www.bilibili.com') {
+                        console.log(`[赛事页面拦截] 主站跳转: ${href}`);
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        location.href = href;
+                    }
+                    // 处理常规链接
+                    else if (target.target === '_blank' || event.ctrlKey) {
+                        console.log(`[全局拦截] <a> 跳转: ${href}`);
+                        event.preventDefault();
+                        event.stopImmediatePropagation();
+                        location.href = href;
+                    }
+                }
+            }
+        }, true); // 捕获阶段处理
+    }
+
+    /**
+     * 动态链接处理
+     */
+    function handleDynamicLinks() {
+        // 初始处理
+        modifyLinks();
+
+        // 观察动态内容
+        new MutationObserver(mutations => {
+            mutations.forEach(() => modifyLinks());
+        }).observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+
+        function modifyLinks() {
+            document.querySelectorAll('a').forEach(a => {
+                if (isBilibiliDomain(a.href)) {
+                    // 移除所有新标签页属性
+                    a.removeAttribute('target');
+                    a.removeAttribute('data-target-new');
+
+                    // 特殊处理赛事页面主站按钮
+                    if (isMatchPage() && a.href === 'https://www.bilibili.com') {
+                        a.href = a.href.replace(/(\?|&)spm_id_from=[^&]*/, '');
+                    }
+                }
+            });
+        }
+    }
+
+    // 初始化
+    function init() {
+        interceptAllNavigations();
+        handleDynamicLinks();
+    }
+
+    // 启动
+    init();
 })();
