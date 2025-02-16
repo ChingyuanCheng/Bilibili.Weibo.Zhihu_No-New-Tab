@@ -1,5 +1,7 @@
 # Bilibili/Weibo/Zhihu No New Tab
+# 哔哩哔哩/微博/知乎禁止新标签页打开链接
 The README of this project has documentation in both English and Chinese.
+
 中文说明可点击下方：
 - [简体中文](README.cn.md)
 
