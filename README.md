@@ -1,17 +1,10 @@
-# Bilibili No New Tab
-
-This project has documentation in both English and Chinese.
-
-- [English Version](README.md)
-- [中文版本](README.cn.md)
-
-# Bilibili No New Tab
-🎯 Completely disable all new tab opening behavior on Bilibili! Covers all scenarios including main site, live streaming, match pages, game center, and more.
+# Bilibili/Weibo/Zhihu No New Tab
+🎯 Completely disable all new tab opening behavior on Bilibili, Weibo, and Zhihu! Say no to redirects and enjoy a seamless browsing experience like a native app!
 
 ## 🚀 Core Features
-- **Force Links to Open in the Current Tab:** All links within Bilibili pages, which would normally open in a new tab (target="_blank"), are forced to open in the current tab.
-- **Fix for Main Site Button on Match Pages:** Resolves the issue where the main site button on match pages would open in a new tab, ensuring it always redirects in the current tab.
-- **SPA Routing Optimization:** Optimizes the script for Bilibili’s single-page applications (SPA), ensuring it handles dynamic content loading and links correctly without failure.
+- **Force links to open in the current tab:** All links on Bilibili, Weibo, and Zhihu that would normally open in a new tab (target="_blank") will now open in the current tab, preventing unnecessary new tabs.
+- **Fix for Bilibili Match Page Home Button:** Ensures the home button on Bilibili's match pages always redirects in the current tab instead of opening a new one.
+- **SPA Routing Optimization:** Optimized for Single Page Applications (SPA), ensuring dynamic content links are handled correctly without breaking functionality.
 
 ## 📌 Installation
 1. Install a script manager 🔧
@@ -19,19 +12,24 @@ This project has documentation in both English and Chinese.
    - [Greasemonkey](https://www.greasespot.net/) (Recommended for Firefox)
 
 2. Install the script with one click 📦  
-   [![Install Link](https://img.shields.io/badge/Install_Script-GreasyFork-green.svg)](https://greasyfork.org/en/scripts/527007-bilibili-禁止新标签页打开链接?locale_override=1)
+   [![Install Link](https://img.shields.io/badge/Install_Script-GreasyFork-green.svg)](https://greasyfork.org/zh-CN/scripts/527007)
 
-3. Visit any Bilibili page to test the effect ✅  
-   Examples: [Main Site](https://www.bilibili.com) | [Live Streaming](https://live.bilibili.com) | [Match Page](https://www.bilibili.com/match)
+3. Visit any Bilibili, Weibo, or Zhihu page to test the effect ✅  
+   Examples: [Bilibili Main Site](https://www.bilibili.com) | [Bilibili Live](https://live.bilibili.com) | [Zhihu](https://www.zhihu.com)
 
 ## 📖 Changelog
+
+### v4.0 (2025-02-16)
+- Added support for Zhihu and Weibo web versions
+- Fixed issues on certain pages
+
 ### v3.0 (2025-02-16)
 - Completely rewrote the event interception logic
-- Fixed the new tab issue with the main site button on match pages
+- Fixed the new tab issue with the home button on Bilibili's match pages
 - Enhanced SPA routing whitelist
 
 ### v2.0 (2025-02-16)
-- Partially rewritten to optimize ineffective behavior on certain pages
+- Partially rewritten to optimize behavior on certain pages
 - Added support for non-Safari browsers
 
 ### v1.0.0 (2025-02-15)
@@ -39,9 +37,9 @@ This project has documentation in both English and Chinese.
 
 ## 🤝 Contributing
 Welcome to contribute in the following ways:
-1. Submit bug reports: [Issue Tracker](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
-2. Request new features: [Feature Suggestions](https://github.com/ChingyuanCheng/bilibili-no-new-tab/issues)
-3. Contribute code directly: 🚀 [Fork Repository](https://github.com/ChingyuanCheng/bilibili-no-new-tab/fork)
+1. Submit bug reports: [Issue Tracker](https://github.com/ChingyuanCheng/Bilibili.Weibo.Zhihu_No-New-Tab/issues)
+2. Request new features: [Feature Suggestions](https://github.com/ChingyuanCheng/Bilibili.Weibo.Zhihu_No-New-Tab/issues)
+3. Contribute code directly: 🚀 [Fork Repository](https://github.com/ChingyuanCheng/Bilibili.Weibo.Zhihu_No-New-Tab/fork)
 
 ## 📜 License
 MIT License © 2025 [ChingyuanCheng](https://github.com/ChingyuanCheng)
