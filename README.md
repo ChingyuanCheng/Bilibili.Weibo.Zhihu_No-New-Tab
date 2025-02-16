@@ -1,4 +1,9 @@
 # Bilibili/Weibo/Zhihu No New Tab
+The README of this project has documentation in both English and Chinese.
+中文说明可点击下方：
+- [简体中文](README.cn.md)
+
+
 🎯 Completely disable all new tab opening behavior on Bilibili, Weibo, and Zhihu! Say no to redirects and enjoy a seamless browsing experience like a native app!
 
 ## 🚀 Core Features
