@@ -1,15 +1,16 @@
 // ==UserScript==
-// @name         哔哩哔哩/微博/知乎禁止新标签页打开链接
-// @name:en      Bilibili/Weibo/Zhihu No New Tab
+// @name         禁止新标签页打开链接
+// @name:en      No New Tab for Chinese Top Websites
 // @namespace    http://tampermonkey.net/
-// @version      4.0
-// @description  让哔哩哔哩、微博、知乎所有链接在当前标签页打开
-// @description:en Force all Bilibili, Weibo, and Zhihu links to open in the current tab instead of a new tab
+// @version      4.1
+// @description  让哔哩哔哩、微博、知乎、小红书所有链接在当前标签页打开
+// @description:en Force all Bilibili, Weibo, Zhihu and RedNote links to open in the current tab instead of a new tab
 // @author       ChingyuanCheng
 // @license      MIT
 // @match        *://*.bilibili.com/*
 // @match        *://*.weibo.com/*
 // @match        *://*.zhihu.com/*
+// @match        *://*.xiaohongshu.com/*
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
@@ -27,7 +28,9 @@
                 u.hostname.endsWith('.weibo.com') ||
                 u.hostname === 'weibo.com' ||
                 u.hostname.endsWith('.zhihu.com') ||
-                u.hostname === 'zhihu.com'
+                u.hostname === 'zhihu.com' ||
+                u.hostname.endsWith('.xiaohongshu.com') ||
+                u.hostname === 'xiaohongshu.com'
             );
         } catch {
             return false;
