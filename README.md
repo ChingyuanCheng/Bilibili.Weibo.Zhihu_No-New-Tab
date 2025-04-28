@@ -7,7 +7,7 @@ The README of this project has documentation in both English and Chinese.
 
 
 # No New Tab for Chinese Top Websites
-🎯 Completely disable all new tab opening behavior on Bilibili, Weibo，Zhihu and RedNote! Say no to redirects and enjoy a seamless browsing experience like a native app!
+🎯 Completely disable all new tab opening behavior on Bilibili, Weibo, Zhihu and RedNote! Say no to redirects and enjoy a seamless browsing experience like a native app!
 
 ## 🚀 Core Features
 - **Force links to open in the current tab:** All links on Bilibili, Weibo, and Zhihu that would normally open in a new tab (target="_blank") will now open in the current tab, preventing unnecessary new tabs.
